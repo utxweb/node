@@ -2,7 +2,7 @@
 # UTX agent node setup: internet apt sources, SSH with the firstmate public keys, never sleep.
 # Public keys only; nothing secret in this file.
 set -e
-[ "$(id -u)" = 0 ] || exec sudo bash "$0" "$@"
+[ "$(id -u)" = 0 ] || { echo "Run it with sudo: curl -sL https://raw.githubusercontent.com/utxweb/node/main/s | sudo bash"; exit 1; }
 U=${SUDO_USER:-$(logname 2>/dev/null || echo utxweb)}
 for s in noble noble-updates noble-security; do echo "deb http://archive.ubuntu.com/ubuntu $s main universe restricted multiverse"; done > /etc/apt/sources.list
 rm -f /etc/apt/sources.list.d/*
